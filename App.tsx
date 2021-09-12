@@ -55,27 +55,30 @@ export default function App() {
     },
   });
 
-  const animatedHeaderStyle = useAnimatedStyle(() => ({
-    height: HEADER_HEIGHT,
-    backgroundColor: "#dedede",
-    opacity: interpolate(scrollYRel.value,
-      [-HEADER_HEIGHT, 1],
-      [0, 1],
-      Extrapolate.CLAMP,
-    ),
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    transform: [
-      {
-        translateY: interpolate(scrollYRel.value,
-      [0, HEADER_HEIGHT],
-      [0, -HEADER_HEIGHT],
-      Extrapolate.CLAMP,
-    ),
-      }
-    ],
-  }));
+  const animatedHeaderStyle = useAnimatedStyle(() => {
+    return ({
+      height: HEADER_HEIGHT,
+      backgroundColor: "#dedede",
+      opacity: interpolate(scrollYRel.value,
+        [0, 3 * HEADER_HEIGHT / 4],
+        [1, 0],
+        Extrapolate.CLAMP,
+      ),
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      transform: [
+        {
+          translateY: interpolate(scrollYRel.value,
+            [0, HEADER_HEIGHT],
+            [0, -HEADER_HEIGHT],
+            Extrapolate.CLAMP,
+          ),
+        }
+      ],
+    
+    });
+  });
 
   return (
       <View style={styles.container}>
